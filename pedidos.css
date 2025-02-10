@@ -172,6 +172,14 @@ input[type="number"]::-webkit-outer-spin-button {
     padding: 1vw;
 }
 
+#searchBox{
+    display: flex;
+    width: 100%;
+    outline: none;
+    border: none;
+    color: var(--azul);
+}
+
 .qtd{
     gap: 0.3vw;
     display: flex;
@@ -179,6 +187,7 @@ input[type="number"]::-webkit-outer-spin-button {
     flex-direction: row;
     align-items: center;
     color: var(--bg);
+    width: 10%;
 }
 
 .qtd input{
@@ -187,9 +196,23 @@ input[type="number"]::-webkit-outer-spin-button {
     border: none;
 }
 
+.obs{
+    display: flex;
+    color: var(--bg);
+    gap: 1vw;
+}
+
+.obs input{
+    display: flex;
+    width: 100%;
+    outline: none;
+    border: none;
+    color: var(--azul);
+}
+
 
 #add-btn{
-    padding: 0.2vw 2vw;
+    padding: 0.2vw 1vw;
     height: 2vw;
     background-color: var(--verde);
     border: none;
@@ -220,19 +243,27 @@ input[type="number"]::-webkit-outer-spin-button {
     cursor: pointer;
 }
 
-#searchBox{
-    display: flex;
-    width: 200%;
-    outline: none;
-    border: none;
-    color: var(--azul);
-
-    
-}
 
 .container-produtos{
     margin-top: 1vw;
     width: 100%;
+}
+
+.obs_pedido{
+    display: flex;
+    flex-direction: column;
+}
+
+.obs_pedido label{
+    color: var(--azul);
+}
+
+#obs_pedido{
+    display: flex;
+    text-align: left;
+    padding: 5px;
+    height: 5vw;
+    outline: none;
 }
 
 

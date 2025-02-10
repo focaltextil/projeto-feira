@@ -50,6 +50,12 @@ body{
     gap: 1vw;
 }
 
+
+.subcontainer span{
+    color: red;
+    font-size: 1vw;
+}
+
 .inputs{
     background-color: var(--azul);
     border-radius: 0.3vw;

@@ -13,11 +13,13 @@ window.addEventListener("DOMContentLoaded", function () {
     document.getElementById("representante").innerHTML = `REPRESENTANTE: ${rep.toLocaleUpperCase()}`;
 
     // ----------------------------------------------------------------------------------------
+    // VARIAVEIS MUITO LOUCAS
 
     let products = JSON.parse(sessionStorage.getItem("base_produtos")) || [];
     let searchBox = document.getElementById("searchBox");
     let quantityBox = document.getElementById("quantityBox");
     let suggestions = document.getElementById("suggestions");
+    let obs = document.getElementById("obs");
     let addBtn = document.getElementById("add-btn");
     let productTable = document.getElementById("productTable");
     let btn_fechar = document.getElementById("btn-fechar");
@@ -26,7 +28,8 @@ window.addEventListener("DOMContentLoaded", function () {
 
 
     // ----------------------------------------------------------------------------------------
-
+    // FUNCAO CABULOSA PRA MONTAR O PEDIDO
+    
     function updateSuggestions(filter = "") {
         suggestions.innerHTML = "";
 
@@ -78,37 +81,43 @@ window.addEventListener("DOMContentLoaded", function () {
     addBtn.addEventListener("click", () => {
         let productName = searchBox.value.trim();
         let quantity = quantityBox.value.trim();
-
+        let observation = obs.value.trim();
+    
         if (productName === "" || quantity === "" || isNaN(quantity)) {
             alert("Seu orelhudo, o campo Produto ou QTD não podem ser vazios");
             return;
         }
-
+    
         let product = products.find(item => item.ARTIGO === productName);
         let productCode = product ? product.COD : "N/A";
-
+    
         let row = document.createElement("tr");
-
-        let cellQuantity = document.createElement("td");
-        cellQuantity.textContent = quantity;
-
-        let cellProduct = document.createElement("td");
-        cellProduct.textContent = productName;
-
+    
         let cellCode = document.createElement("td");
         cellCode.textContent = productCode;
-
+    
+        let cellProduct = document.createElement("td");
+        cellProduct.textContent = productName;
+    
+        let cellQuantity = document.createElement("td");
+        cellQuantity.textContent = quantity;
+    
+        let cellObservation = document.createElement("td");
+        cellObservation.textContent = observation || "-";
+    
         row.appendChild(cellCode);
         row.appendChild(cellProduct);
         row.appendChild(cellQuantity);
-        
-
+        row.appendChild(cellObservation);
+    
         productTable.appendChild(row);
-
+    
+       
         searchBox.value = "";
         quantityBox.value = "";
+        obs.value = "";
     });
-
+    
 });
 
 

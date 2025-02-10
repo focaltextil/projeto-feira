@@ -16,9 +16,10 @@ window.addEventListener("DOMContentLoaded", function(){
         if (
             !input_empresa.value.trim() ||  
             !input_contato.value.trim() || 
+            !input_fone_number.value.trim() ||
             !input_rep.value.trim()
         ) {
-            alert("Por favor, preencha todos os campos antes de salvar!");
+            alert("Por favor, preencha todos os campos Obrigatórios");
             return;
         }
     
