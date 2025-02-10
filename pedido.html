@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pedidos.css">
+    <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
+    <script src="pedido.js"></script>
+    <title>INSERIR PEDIDO</title>
+</head>
+
+<body>
+
+    <header>
+
+        <button onclick="window.location.href='./index.html'" class="back-btn">< Voltar</button>
+
+
+                <h2>Inserção De Pedido</h2>
+
+                <div>
+
+                </div>
+
+    </header>
+
+    <div class="barra">
+
+        <hr>
+
+    </div>
+
+    <div class="cabecalho-pedido">
+
+        <div class="ids">
+
+            <h5 id="cliente">Cliente</h5>
+            <h5 id="cnpj">CNPJ</h5>
+            <h5 id="contato">Contato</h5>
+            <h5 id="representante">Representante</h5>
+
+        </div>
+
+
+        <div class="pedido">
+
+            <img src="./addicon.png" alt="" id="btn-abrir">
+
+        </div>
+
+    </div>
+
+    <div class="barra">
+
+        <hr>
+
+    </div>
+
+    <section class="container-pedido">
+
+
+        <div class="pedido-conteudo">
+
+            <table id="productTable">
+                <tr>
+                  <th>Código</th>
+                  <th>Produto</th>
+                  <th>Quantidade</th>
+                </tr>
+              </table>
+
+        </div>
+
+    </section>
+
+    <div class="bts">
+
+        <button id="cancelar-btn">Cancelar</button>
+
+        <button id="reiniciar-btn">Reiniciar</button>
+
+        <button id="concluir-btn">Concluir</button>
+
+    </div>
+
+
+    <div class="modal">
+
+        <div class="btn-fechar">
+
+            <h2>Inserir Produto:</h2>
+
+            <button id="btn-fechar">x</button>
+
+        </div>
+
+        <div class="produto">
+
+            <div class="autocomplete-container">
+
+
+                <input type="text" id="searchBox" placeholder="Digite para buscar...">
+                
+            </div>
+
+            <div class="qtd">
+
+                <label>Qtd</label>
+                <input type="number" id="quantityBox" min="0">
+
+
+            </div>
+
+            <div class="botao">
+
+                <button id="add-btn">Add +</button>
+
+            </div>
+
+            
+        </div>
+
+
+        <div class="container-produtos">
+
+            <div id="suggestions" class="suggestions"></div>
+
+        </div>
+
+
+    </div>
+    
+
+</body>
+
+</html>
