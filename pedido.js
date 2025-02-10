@@ -26,6 +26,8 @@ window.addEventListener("DOMContentLoaded", function () {
     let btn_abrir = document.getElementById("btn-abrir");
     let modal = document.querySelector(".modal");
 
+    const btn_pdf = document.getElementById("salvar_pdf");
+
 
     // ----------------------------------------------------------------------------------------
     // FUNCAO CABULOSA PRA MONTAR O PEDIDO
@@ -89,7 +91,7 @@ window.addEventListener("DOMContentLoaded", function () {
         }
     
         let product = products.find(item => item.ARTIGO === productName);
-        let productCode = product ? product.COD : "N/A";
+        let productCode = product ? product.COD : "Desenvolver";
     
         let row = document.createElement("tr");
     
@@ -103,7 +105,7 @@ window.addEventListener("DOMContentLoaded", function () {
         cellQuantity.textContent = quantity;
     
         let cellObservation = document.createElement("td");
-        cellObservation.textContent = observation || "-";
+        cellObservation.textContent = observation || "";
     
         row.appendChild(cellCode);
         row.appendChild(cellProduct);
@@ -117,6 +119,26 @@ window.addEventListener("DOMContentLoaded", function () {
         quantityBox.value = "";
         obs.value = "";
     });
+
+
+    function gerarPDF() {
+        const { jsPDF } = window.jspdf;
+        const elemento = document.querySelector("body");
+    
+        html2canvas(elemento).then(canvas => {
+            const imgData = canvas.toDataURL("image/png");
+            const pdf = new jsPDF("p", "mm", "a4");
+    
+            const imgWidth = 190;
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    
+            pdf.addImage(imgData, "PNG", 10, 10, imgWidth, imgHeight);
+            pdf.save("pedido.pdf");
+        });
+    }
+    
+    btn_pdf.addEventListener("click", gerarPDF);
+    
     
 });
 
