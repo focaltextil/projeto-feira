@@ -24,71 +24,56 @@ body{
     display: flex;
     justify-content: center;
     flex-direction: column;
-    overflow-x: hidden;
+    max-width: 1300px;
 }
 
+
 header{
-    padding: 3vw 2vw;
     display: flex;
     align-items: center;
+    padding: 1vw 4vw;
+    width: 100vw;
+    justify-content: space-between;
+}
+
+#icone_focal{
+    width: 10vw;
+}
+
+.div-titulo{
+    display: flex;
+    margin-right: 7vw;
+}
+
+header h2{
+    color: var(--azul);
+    text-align: left;
+}
+
+#icone_add_produto{
+    width: 3vw;
+}
+
+.dados_pedido{
+    display: flex;
+    flex-direction: column;
+}
+
+.linha-1{
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     width: 100%;
 }
 
-.back-btn{
-    background-color: var(--azul);
-    width: 5vw;
-    padding: 0.2vw;
-    color: var(--bg);
-    border: none;
-    border-radius: 0.2vw;
-    cursor: pointer;
-}
-
-h2{
-    color: var(--azul);
-}
-
-.barra{
-    display: flex;
-    justify-content: center;
-}
-
-
-hr{
-    border-top: 2px solid var(--azul);
-    width: 90%;
-}
-
-.cabecalho-pedido{
+.linha-2{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    margin: 2vw;
+    justify-content: space-between;
+    width: 100%;
 }
 
-.ids{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    gap: 1vw;
-    padding: 1vw 3vw;
-    color: var(--azul);
-}
-
-.cabecalho-pedido img{
-    width: 4vw;
-    cursor: pointer;
-}
-
-.pedido{
-    color: var(--azul);
-    display: flex;
-    text-align: center;
-    gap: 1vw;
-}
-
+/* 
 .container-pedido{
     display: flex;
     flex-direction: column;
@@ -130,19 +115,6 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
-.container-pedido div{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 1vw;
-}
-
-.pedido{
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;    
-}
 
 
 .botao{
@@ -159,7 +131,7 @@ input[type="number"]::-webkit-outer-spin-button {
     transform: translate(-50%, -50%);
     background-color: #4a7088;
     flex-direction: column;
-    width: 60vw;
+    width: 90vw;
     height: 30vw; 
     padding: 20px;
     align-items: center;
@@ -181,7 +153,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 #searchBox{
     display: flex;
-    width: 100%;
+    width: 160%;
     outline: none;
     border: none;
     color: var(--azul);
@@ -338,4 +310,4 @@ input[type="number"]::-webkit-outer-spin-button {
     cursor: pointer;
 }
 
-
+ */

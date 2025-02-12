@@ -1,17 +1,4 @@
 window.addEventListener("DOMContentLoaded", function () {
-    let cliente = sessionStorage.getItem("empresa");
-    document.getElementById("cliente").innerHTML =`CLIENTE: ${cliente.toLocaleUpperCase()}` ;
-
-    let cnpj = sessionStorage.getItem("cnpj");
-    document.getElementById("cnpj").innerHTML = `CNPJ: ${cnpj}`;
-
-    let contato = sessionStorage.getItem("contato");
-    let fone = sessionStorage.getItem("fone");
-    document.getElementById("contato").innerHTML = `CONTATO: ${contato.toLocaleUpperCase()} - FONE: ${fone}`;
-
-    let rep = sessionStorage.getItem("representante");
-    document.getElementById("representante").innerHTML = `REPRESENTANTE: ${rep.toLocaleUpperCase()}`;
-
     // ----------------------------------------------------------------------------------------
     // VARIAVEIS MUITO LOUCAS
 
