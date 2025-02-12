@@ -84,6 +84,11 @@ header h2{
     margin-bottom: 10px;
 }
 
+input{
+    text-transform: capitalize;
+    margin-left: 0.5vw;
+}
+
 .inputs{
     display: flex;
     flex-direction: row;
@@ -92,6 +97,10 @@ header h2{
 
 #input1{
     width: 70%;
+}
+
+#input3{
+    width: 50%;
 }
 
 
@@ -114,22 +123,34 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
+#input5 label{
+    margin-right: 1vw;
+}
 
+#select{
+    width: 5vw;
+    font-size: 1vw;
+    padding: 0vw;
+    color: var(--azul);
+}
 
-/* 
+/* ------------------------------------------ */
+/* TABELA DOS PRODUTOS: */
+
 .container-pedido{
     display: flex;
     flex-direction: column;
-    width: 100%;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    width: 100vw;
 }
 
-
 #productTable {
-    width: 100%;
+    width: 92vw;
     border-collapse: collapse;
     margin-bottom: 4vw;
+    padding: 1vw 4vw;
 }
 
 #productTable th{
@@ -159,13 +180,8 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 
-
-.botao{
-    display: flex;
-    text-align: center;
-    flex-direction: center;
-    align-items: center;
-}
+/* -------------------------------------------------- */
+/* MODAL SATANICO */
 
 .modal{
     position: fixed;
@@ -175,7 +191,7 @@ input[type="number"]::-webkit-outer-spin-button {
     background-color: #4a7088;
     flex-direction: column;
     width: 90vw;
-    height: 30vw; 
+    height: 40vw; 
     padding: 20px;
     align-items: center;
     text-align: center;
@@ -184,6 +200,12 @@ input[type="number"]::-webkit-outer-spin-button {
     display: none;
 }
 
+.botao{
+    display: flex;
+    text-align: center;
+    flex-direction: center;
+    align-items: center;
+}
 
 .produto{
     display: flex;
@@ -218,20 +240,6 @@ input[type="number"]::-webkit-outer-spin-button {
     border: none;
 }
 
-.obs{
-    display: flex;
-    color: var(--bg);
-    gap: 1vw;
-}
-
-.obs input{
-    display: flex;
-    width: 100%;
-    outline: none;
-    border: none;
-    color: var(--azul);
-}
-
 
 #add-btn{
     padding: 0.2vw 1vw;
@@ -256,7 +264,6 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 
-
 #btn-fechar{
     padding: 0.2vw 0.4vw;
     font-size: 1.5vw;
@@ -267,14 +274,19 @@ input[type="number"]::-webkit-outer-spin-button {
     cursor: pointer;
 }
 
-
 .container-produtos{
     margin-top: 1vw;
     width: 100%;
 }
 
+/* ----------------------------------------------------- */
+/* OBSERVACAO DOS PEDIDOS */
+
 .obs_pedido{
     display: flex;
+    justify-content: left;
+    text-align: left;
+    width: 92vw;
     flex-direction: column;
 }
 
@@ -284,32 +296,40 @@ input[type="number"]::-webkit-outer-spin-button {
 
 #obs_pedido{
     display: flex;
-    text-align: left;
+    text-align: center;
     padding: 5px;
     height: 5vw;
     outline: none;
+    margin: 0;
 }
 
+/* ----------------------------------------------------- */
 
 .suggestions{
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    max-height: 18vw;
+    max-height: 28vw;
 }
 
 .suggestions div{
     text-align: left;
     cursor: pointer;
     color: var(--bg);
-    line-height: 2vw;
+    line-height: 1.5vw;
 }
 
 
+/* ----------------------------------------------------- */
+/* BOTOES INFERIOES */
+
 .bts{
+    width: 100vw;
     display: flex;
-    justify-content: space-around;
-    margin: 1vw;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    padding: 1vw 4vw;
 }
 
 #cancelar-btn{
@@ -332,7 +352,6 @@ input[type="number"]::-webkit-outer-spin-button {
     cursor: pointer;
 }
 
-
 #reiniciar-btn{
     background-color: orange;
     padding: 0.5vw 0.5vw;
@@ -353,4 +372,3 @@ input[type="number"]::-webkit-outer-spin-button {
     cursor: pointer;
 }
 
- */

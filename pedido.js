@@ -10,7 +10,7 @@ window.addEventListener("DOMContentLoaded", function () {
     let addBtn = document.getElementById("add-btn");
     let productTable = document.getElementById("productTable");
     let btn_fechar = document.getElementById("btn-fechar");
-    let btn_abrir = document.getElementById("btn-abrir");
+    let btn_abrir = document.getElementById("icone_add_produto");
     let modal = document.querySelector(".modal");
 
     const btn_pdf = document.getElementById("salvar_pdf");
