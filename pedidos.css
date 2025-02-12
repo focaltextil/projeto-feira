@@ -55,6 +55,16 @@ header h2{
     cursor: pointer;
 }
 
+
+.pedido{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    width: 100vw;
+    padding: 1vw 4vw;
+}
+
 .dados_pedido{
     display: flex;
     justify-content: center;
@@ -65,8 +75,7 @@ header h2{
 
 .dados_pedido .linha-1,
 .dados_pedido .linha-2,
-.dados_pedido .linha-3,
-.dados_pedido .linha-4 {
+.dados_pedido .linha-3{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -79,6 +88,10 @@ header h2{
     display: flex;
     flex-direction: row;
     flex-grow: 1;
+}
+
+#input1{
+    width: 70%;
 }
 
 
