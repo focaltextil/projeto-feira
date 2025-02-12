@@ -18,6 +18,7 @@
     --text-size: 0.9vw;
     --azul: #0578BD;
     --verde: #08cf62;
+    --azul-escuro: #043359;
 }
 
 body{
@@ -26,7 +27,6 @@ body{
     flex-direction: column;
     max-width: 1300px;
 }
-
 
 header{
     display: flex;
@@ -52,26 +52,56 @@ header h2{
 
 #icone_add_produto{
     width: 3vw;
+    cursor: pointer;
 }
 
 .dados_pedido{
     display: flex;
+    justify-content: center;
+    width: 100%;
     flex-direction: column;
+    gap: 1vw;
 }
 
-.linha-1{
+.dados_pedido .linha-1,
+.dados_pedido .linha-2,
+.dados_pedido .linha-3,
+.dados_pedido .linha-4 {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    width: 100%;
+    align-items: center;
+    border-bottom: 2px solid var(--azul);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
 }
 
-.linha-2{
+.inputs{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
+    flex-grow: 1;
 }
+
+
+.inputs label{
+    color: var(--azul-escuro);
+    display: block;
+}
+
+.inputs input{
+    border: none;
+    outline: none;
+    font-size: 1.2vw;
+    color: var(--azul);
+    width: 90%;
+}
+
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+
 
 /* 
 .container-pedido{
