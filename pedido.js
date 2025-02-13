@@ -1,4 +1,7 @@
+// TUDO RODA AQUI DENTRO
+
 window.addEventListener("DOMContentLoaded", function () {
+
     // ----------------------------------------------------------------------------------------
     // VARIAVEIS MUITO LOUCAS
 
