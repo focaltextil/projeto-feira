@@ -1,6 +1,7 @@
 window.addEventListener("DOMContentLoaded", function () {
 
     const btn_inserir = document.getElementById("concluir-btn");
+    
     let input_empresa = document.getElementById("cliente");
     let input_cnpj = document.getElementById("cnpj");
     let input_end = document.getElementById("end");
@@ -10,10 +11,10 @@ window.addEventListener("DOMContentLoaded", function () {
     let input_contato = document.getElementById("contato");
     let input_fone_number = document.getElementById("telefone");
     let input_rep = document.getElementById("rep");
+    let obs_pedido = document.getElementById("obs_pedido");
 
     // ------------------------------------------------------
-
-
+    //RESTRINGIR TECLAS DO CNPJ PARA QUE O ANTA NAO COLOQUE LETRAS
 
     cnpj.addEventListener("keydown", function (event) {
 
@@ -32,6 +33,9 @@ window.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // ------------------------------------------------------
+    //GUARDAR VALORES NO SESSION STORAGE PARA POSTERIORMENTE INSERIR NO PEDIDO
+
     btn_inserir.addEventListener("click", function () {
         if (
             !input_empresa.value.trim() || //nome do cliente patético.
@@ -42,15 +46,37 @@ window.addEventListener("DOMContentLoaded", function () {
             !input_rep.value.trim()// nome do trouxa que atende ou vai atender esse povo.
         ) {
             alert("Por favor, preencha todos os campos Obrigatórios");
-        }else{
+
+        }
+
+        else {
 
             sessionStorage.setItem("empresa", input_empresa.value);
             sessionStorage.setItem("cnpj", input_cnpj.value);
+            sessionStorage.setItem("endereco", input_end.value);
+            sessionStorage.setItem("cidade", input_city.value);
+            sessionStorage.setItem("uf", input_uf.value);
+            sessionStorage.setItem("cep", input_cep.value);
             sessionStorage.setItem("contato", input_contato.value);
             sessionStorage.setItem("fone", input_fone_number.value);
             sessionStorage.setItem("representante", input_rep.value);
 
-            alert("Tá tudo certo, eba!")
+            sessionStorage.setItem("obs",obs_pedido.value)
+
+            alert(
+                `Empresa: ${sessionStorage.getItem("empresa")}\n` +
+                `CNPJ: ${sessionStorage.getItem("cnpj")}\n` +
+                `Endereço: ${sessionStorage.getItem("endereco")}\n` +
+                `Cidade: ${sessionStorage.getItem("cidade")}\n` +
+                `UF: ${sessionStorage.getItem("uf")}\n` +
+                `CEP: ${sessionStorage.getItem("cep")}\n` +
+                `Contato: ${sessionStorage.getItem("contato")}\n` +
+                `Fone: ${sessionStorage.getItem("fone")}\n` +
+                `Representante: ${sessionStorage.getItem("representante")}\n` +
+                `Observação: ${sessionStorage.getItem("obs")}`
+            );
+            
+
         }
 
     });

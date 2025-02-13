@@ -76,7 +76,7 @@ window.addEventListener("DOMContentLoaded", function () {
         let observation = obs.value.trim();
     
         if (productName === "" || quantity === "" || isNaN(quantity)) {
-            alert("Seu orelhudo, o campo Produto ou QTD não podem ser vazios");
+            alert("Campo Produto e QTD não podem ser vazios");
             return;
         }
     
