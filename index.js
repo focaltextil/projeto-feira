@@ -34,20 +34,24 @@ window.addEventListener("DOMContentLoaded", function () {
 
     btn_inserir.addEventListener("click", function () {
         if (
-            !input_empresa.value.trim() ||
-            !input_contato.value.trim() ||
-            !input_fone_number.value.trim() ||
-            !input_rep.value.trim()
+            !input_empresa.value.trim() || //nome do cliente patético.
+            !input_city.value.trim() || //cidade do cliente.
+            !input_uf.value.trim() || //estado do belissimo cliente.
+            !input_contato.value.trim() || //nome da pessoa de contato, comprador etc.
+            !input_fone_number.value.trim() || //numero dessa pessoa ridicula.
+            !input_rep.value.trim()// nome do trouxa que atende ou vai atender esse povo.
         ) {
             alert("Por favor, preencha todos os campos Obrigatórios");
-            return;
-        }
+        }else{
 
-        sessionStorage.setItem("empresa", input_empresa.value);
-        sessionStorage.setItem("cnpj", input_cnpj.value);
-        sessionStorage.setItem("contato", input_contato.value);
-        sessionStorage.setItem("fone", input_fone_number.value);
-        sessionStorage.setItem("representante", input_rep.value);
+            sessionStorage.setItem("empresa", input_empresa.value);
+            sessionStorage.setItem("cnpj", input_cnpj.value);
+            sessionStorage.setItem("contato", input_contato.value);
+            sessionStorage.setItem("fone", input_fone_number.value);
+            sessionStorage.setItem("representante", input_rep.value);
+
+            alert("Tá tudo certo, eba!")
+        }
 
     });
 
