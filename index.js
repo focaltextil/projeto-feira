@@ -1,15 +1,12 @@
 window.addEventListener("DOMContentLoaded", async function () {
-    sessionStorage.clear();
-
-
+    // Carregar dados do Excel se não estiver no Session Storage
     if (!sessionStorage.getItem("base_produtos")) {
         await loadExcelData();
     }
-
     let products = JSON.parse(sessionStorage.getItem("base_produtos")) || [];
 
     // ------------------------------------------------------
-    //VARIAVEIS PATETICAS
+    // VARIÁVEIS DE FORMULÁRIO
 
     const btn_inserir = document.getElementById("concluir-btn");
     let input_empresa = document.getElementById("cliente");
@@ -23,8 +20,10 @@ window.addEventListener("DOMContentLoaded", async function () {
     let input_rep = document.getElementById("rep");
     let obs_pedido = document.getElementById("obs_pedido");
 
+    const data = new Date().toISOString().split("T")[0];
+
     // ------------------------------------------------------
-    //VARIAVEIS PATETICAS PARTE 2
+    // VARIÁVEIS DO PEDIDO
 
     let searchBox = document.getElementById("searchBox");
     let quantityBox = document.getElementById("quantityBox");
@@ -38,7 +37,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     const btn_pdf = document.getElementById("salvar_pdf");
 
     // ------------------------------------------------------
-    //RESTRINGIR TECLAS DO CNPJ PARA QUE NAO INSIRA LETRAS
+    // RESTRINGIR TECLAS DO CNPJ
 
     input_cnpj.addEventListener("keydown", function (event) {
         const teclasPermitidas = ["Backspace", "Tab", "Delete", "ArrowLeft", "ArrowRight", ".", "/", "-"];
@@ -48,7 +47,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     });
 
     // ------------------------------------------------------
-    //GUARDAR VALORES NO SESSION STORAGE PARA POSTERIORMENTE INSERIR NO PEDIDO
+    // GUARDAR VALORES NO SESSION STORAGE
 
     btn_inserir.addEventListener("click", function () {
         if (
@@ -88,7 +87,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     });
 
     // ------------------------------------------------------
-    // MONTAR O PEDIDO
+    // FILTRAR E SUGERIR PRODUTOS
 
     function updateSuggestions(filter = "") {
         suggestions.innerHTML = "";
@@ -119,6 +118,9 @@ window.addEventListener("DOMContentLoaded", async function () {
         }
     });
 
+    // ------------------------------------------------------
+    // MODAL DE ADIÇÃO DE PRODUTOS
+
     btn_fechar.addEventListener("click", function () {
         modal.style.display = "none";
     });
@@ -126,6 +128,11 @@ window.addEventListener("DOMContentLoaded", async function () {
     btn_abrir.addEventListener("click", function () {
         modal.style.display = "block";
     });
+
+    // ------------------------------------------------------
+    // ARRAY PARA ITENS E MONTAR O PEDIDO
+
+    const itens = [];
 
     addBtn.addEventListener("click", () => {
         let productName = searchBox.value.trim();
@@ -140,20 +147,30 @@ window.addEventListener("DOMContentLoaded", async function () {
         let product = products.find(item => item.ARTIGO === productName);
         let productCode = product ? product.COD : "Desenvolver";
 
+        // Adiciona o item ao array
+        itens.push({
+            codigo: productCode,
+            nome: productName,
+            quantidade: quantity,
+            observacao: observation
+        });
+
+        // Adiciona o item na tabela
         let row = document.createElement("tr");
-
         row.innerHTML = `
-                <td>${productCode}</td>
-                <td>${productName}</td>
-                <td>${quantity}</td>
-                <td>${observation}</td>
-            `;
-
+            <td>${productCode}</td>
+            <td>${productName}</td>
+            <td>${quantity}</td>
+            <td>${observation}</td>
+        `;
         productTable.appendChild(row);
 
+        // Limpa os campos de entrada
         searchBox.value = "";
         quantityBox.value = "";
         obs.value = "";
+
+        console.log(itens); // Ver o array no console
     });
 
     // ------------------------------------------------------
@@ -162,33 +179,29 @@ window.addEventListener("DOMContentLoaded", async function () {
     function gerarPDF() {
         const { jsPDF } = window.jspdf;
         const elemento = document.querySelector("body");
-    
+
         html2canvas(elemento).then(canvas => {
             const imgData = canvas.toDataURL("image/png");
             const pdf = new jsPDF("p", "mm", "a4");
-    
+
             const pdfWidth = pdf.internal.pageSize.getWidth();
             const pdfHeight = pdf.internal.pageSize.getHeight();
-            const imgWidth = canvas.width * 0.75;  // Ajustando a largura da imagem para melhorar a escala
-            const imgHeight = canvas.height * 0.75;  // Ajustando a altura da imagem
-    
+            const imgWidth = canvas.width * 0.75;
+            const imgHeight = canvas.height * 0.75;
+
             const scaleX = pdfWidth / imgWidth;
             const scaleY = pdfHeight / imgHeight;
-    
-            const scale = Math.min(scaleX, scaleY);  // Escala para garantir que caiba na página
-    
+
+            const scale = Math.min(scaleX, scaleY);
+
             const imgScaledWidth = imgWidth * scale;
             const imgScaledHeight = imgHeight * scale;
-    
-            // Adiciona a imagem no PDF
+
             pdf.addImage(imgData, "PNG", 0, 0, imgScaledWidth, imgScaledHeight);
-    
-            // Salva o PDF
+
             pdf.save("pedido.pdf");
         });
     }
-    
-    
-    btn_pdf.addEventListener("click", gerarPDF);
 
+    btn_pdf.addEventListener("click", gerarPDF);
 });
