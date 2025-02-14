@@ -169,23 +169,25 @@ window.addEventListener("DOMContentLoaded", async function () {
     
             const pdfWidth = pdf.internal.pageSize.getWidth();
             const pdfHeight = pdf.internal.pageSize.getHeight();
-            const imgWidth = canvas.width;
-            const imgHeight = canvas.height;
+            const imgWidth = canvas.width * 0.75;  // Ajustando a largura da imagem para melhorar a escala
+            const imgHeight = canvas.height * 0.75;  // Ajustando a altura da imagem
     
             const scaleX = pdfWidth / imgWidth;
             const scaleY = pdfHeight / imgHeight;
     
-            const scale = Math.min(scaleX, scaleY);
+            const scale = Math.min(scaleX, scaleY);  // Escala para garantir que caiba na página
     
             const imgScaledWidth = imgWidth * scale;
             const imgScaledHeight = imgHeight * scale;
     
+            // Adiciona a imagem no PDF
             pdf.addImage(imgData, "PNG", 0, 0, imgScaledWidth, imgScaledHeight);
     
+            // Salva o PDF
             pdf.save("pedido.pdf");
-
         });
     }
+    
     
     btn_pdf.addEventListener("click", gerarPDF);
 
