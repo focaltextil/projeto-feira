@@ -18,6 +18,7 @@
 *{
     padding: 0;
     margin: 0;
+    border: 0;
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
 }
@@ -28,6 +29,7 @@ body{
     justify-content: center;
     flex-direction: column;
     max-width: 1300px;
+    overflow-x: hidden;
 }
 
 header{
@@ -44,7 +46,6 @@ header{
 
 .div-titulo{
     display: flex;
-    margin-right: 7vw;
 }
 
 header h2{
@@ -53,10 +54,8 @@ header h2{
 }
 
 
-#icone_add_produto{
-    width: 3vw;
-    cursor: pointer;
-    display: none;
+#fimec{
+    width: 15vw;
 }
 
 
@@ -97,6 +96,7 @@ input[type="text"] {
     color: var(--azul);
 }
 
+
 input[type="text"]:-webkit-autofill,
 input[type="text"]:-webkit-autofill:hover, 
 input[type="text"]:-webkit-autofill:focus, 
@@ -132,30 +132,61 @@ span{
 .inputs input{
     border: none;
     outline: none;
-    font-size: 1.2vw;
+    font-size: 1.5vw;
     color: var(--azul);
     width: 90%;
 }
 
+
+label{
+    margin-right: 1vw;
+    font-size: 1.5vw;
+}
+
+#select{
+    width: 5vw;
+    font-size: 1.5vw;
+    color: var(--azul);
+}
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
-#input5 label{
-    margin-right: 1vw;
+#contato {
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
-#select{
-    width: 5vw;
-    font-size: 1vw;
-    color: var(--azul);
+
+/* ------------------------------------------ */
+/* SECCAO QUE ACRESCENTA ITEM NOVO: */
+
+.div-add{
+    display: flex;
+    margin: 0;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: 1vw;
+    width: 96vw;
+    position: relative;
+
+}
+
+#icone_add_produto{
+    background-color: var(--verde);
+    width: 10vw;
+    color: var(--bg);
+    padding: 0.3vw 0.2vw;
+    border: none;
+    border-radius: 0.2vw;
+    cursor: pointer;
 }
 
 /* ------------------------------------------ */
 /* TABELA DOS PRODUTOS: */
-
 
 .container-pedido{
     display: flex;
@@ -177,6 +208,7 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 92vw;
     border-collapse: collapse;
     padding: 1vw 4vw;
+
 }
 
 #productTable th{
@@ -215,7 +247,7 @@ input[type="number"]::-webkit-outer-spin-button {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #639cbe;
+    background-color: var(--azul-escuro);
     flex-direction: column;
     width: 90vw;
     height: 40vw; 
@@ -290,9 +322,18 @@ input[type="number"]::-webkit-outer-spin-button {
     color: var(--bg);
 }
 
+.obs label{
+    color: var(--bg);
+}
+
+#obs{
+    width: 50%;
+    outline: none;
+    border: none;
+}
 
 #btn-fechar{
-    padding: 0.2vw 0.6vw;
+    padding: 0.1vw 0.6vw;
     font-size: 2vw;
     background-color: red;
     border: none;
@@ -305,6 +346,24 @@ input[type="number"]::-webkit-outer-spin-button {
     margin-top: 1vw;
     width: 100%;
 }
+
+/* ----------------------------------------------------- */
+/* CAIXA DE SUSGESTAO PARA O USUARIO CLICAR */
+
+.suggestions{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    max-height: 28vw;
+}
+
+.suggestions div{
+    text-align: left;
+    cursor: pointer;
+    color: var(--bg);
+    line-height: 1.5vw;
+}
+
 
 /* ----------------------------------------------------- */
 /* OBSERVACAO DOS PEDIDOS */
@@ -331,22 +390,6 @@ input[type="number"]::-webkit-outer-spin-button {
     margin: 0;
 }
 
-/* ----------------------------------------------------- */
-
-.suggestions{
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    max-height: 28vw;
-}
-
-.suggestions div{
-    text-align: left;
-    cursor: pointer;
-    color: var(--bg);
-    line-height: 1.5vw;
-}
-
 
 /* ----------------------------------------------------- */
 /* BOTOES INFERIOES */
@@ -362,7 +405,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 #salvar_pdf{
     background-color: rgb(5, 202, 236);
-    padding: 0.5vw 0.5vw;
+    padding: 0.7vw 0.5vw;
     border: none;
     color: var(--bg);
     border-radius: 0.2vw;
@@ -372,7 +415,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 #reiniciar-btn{
     background-color: orange;
-    padding: 0.5vw 0.5vw;
+    padding: 0.7vw 0.5vw;
     border: none;
     color: var(--bg);
     border-radius: 0.2vw;
@@ -382,7 +425,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 #concluir-btn{
     background-color: var(--verde);
-    padding: 0.5vw 0.5vw;
+    padding: 0.7vw 0.5vw;
     border: none;
     color: var(--bg);
     border-radius: 0.2vw;

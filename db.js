@@ -54,7 +54,7 @@ async function loadExcelData() {
 
 loadExcelData()
     .then(jsonData => {
-        console.log('Dados carregados:', jsonData);
+        console.log('Dados carregados');
     })
     .catch(error => {
         console.error('Erro durante a execução:', error);
