@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", async function () {
-    // Carregar dados do Excel se não estiver no Session Storage
+
     if (!sessionStorage.getItem("base_produtos")) {
         await loadExcelData();
     }
@@ -18,7 +18,6 @@ window.addEventListener("DOMContentLoaded", async function () {
     let input_contato = document.getElementById("contato");
     let input_fone_number = document.getElementById("telefone");
     let input_rep = document.getElementById("rep");
-    let obs_pedido = document.getElementById("obs_pedido");
 
     const data = new Date().toISOString().split("T")[0];
 
@@ -69,7 +68,6 @@ window.addEventListener("DOMContentLoaded", async function () {
             sessionStorage.setItem("contato", input_contato.value);
             sessionStorage.setItem("fone", input_fone_number.value);
             sessionStorage.setItem("representante", input_rep.value);
-            sessionStorage.setItem("obs", obs_pedido.value);
 
             alert(
                 `Empresa: ${sessionStorage.getItem("empresa")}\n` +
@@ -149,10 +147,20 @@ window.addEventListener("DOMContentLoaded", async function () {
 
         // Adiciona o item ao array
         itens.push({
+            data: data,
+            cliente: input_empresa.value,
+            cnpj: input_cnpj.value,
+            endereco: input_end.value,
+            cidade: input_city.value,
+            uf: input_uf.value,
+            cep: input_cep.value,
+            nome_contato: input_contato.value,
+            telefone: input_fone_number.value,
+            representante: input_rep.value,
             codigo: productCode,
-            nome: productName,
-            quantidade: quantity,
-            observacao: observation
+            produto: productName,
+            qtd : quantity,
+            obs_item: observation
         });
 
         // Adiciona o item na tabela
@@ -205,3 +213,4 @@ window.addEventListener("DOMContentLoaded", async function () {
 
     btn_pdf.addEventListener("click", gerarPDF);
 });
+
