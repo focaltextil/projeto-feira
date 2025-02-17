@@ -78,7 +78,8 @@ window.addEventListener("DOMContentLoaded", async function () {
 
         console.log(itens);
 
-        fetch('http://127.0.0.1:3000/order_input', {
+        // fetch('http://127.0.0.1:3000/order_input', {
+        fetch( 'https://api-tbpreco.onrender.com/order_input',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
