@@ -246,7 +246,7 @@ input[type="number"]::-webkit-outer-spin-button {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: var(--azul-escuro);
+    background-color: #466b81;
     flex-direction: column;
     width: 90vw;
     height: 40vw; 
@@ -277,6 +277,8 @@ input[type="number"]::-webkit-outer-spin-button {
 #searchBox{
     display: flex;
     width: 40vw;
+    border-radius: 0.3vw;
+    padding: 0.5vw;
     outline: none;
     border: none;
     color: var(--azul);
@@ -290,12 +292,15 @@ input[type="number"]::-webkit-outer-spin-button {
     align-items: center;
     color: var(--bg);
     width: 10%;
+
 }
 
 .qtd input{
     width: 50%;
     outline: none;
     border: none;
+    border-radius: 0.3vw;
+    padding: 0.5vw;
 }
 
 
@@ -325,10 +330,12 @@ input[type="number"]::-webkit-outer-spin-button {
     color: var(--bg);
 }
 
-#obs{
+#obs_item{
     width: 20vw;
     outline: none;
     border: none;
+    border-radius: 0.3vw;
+    padding: 0.5vw;
 }
 
 #btn-fechar{

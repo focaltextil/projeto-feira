@@ -6,7 +6,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     let products = JSON.parse(sessionStorage.getItem("base_produtos")) || [];
 
     // ------------------------------------------------------
-    // VARIÁVEIS DE FORMULÁRIO
+    // VARIAVEIS MUITO LOUCAS
 
     const btn_inserir = document.getElementById("concluir-btn");
     let input_empresa = document.getElementById("cliente");
@@ -22,12 +22,13 @@ window.addEventListener("DOMContentLoaded", async function () {
     const data = new Date().toISOString().split("T")[0];
 
     // ------------------------------------------------------
-    // VARIÁVEIS DO PEDIDO
+    // VARIAVEIS DO PEDIDO DESSE POVO CHATO
 
     let searchBox = document.getElementById("searchBox");
     let quantityBox = document.getElementById("quantityBox");
     let suggestions = document.getElementById("suggestions");
-    let obs = document.getElementById("obs");
+    let obs_item = document.getElementById("obs_item");
+    let obs_pedido = document.getElementById("obs_pedido");
     let addBtn = document.getElementById("add-btn");
     let productTable = document.getElementById("productTable");
     let btn_fechar = document.getElementById("btn-fechar");
@@ -68,20 +69,38 @@ window.addEventListener("DOMContentLoaded", async function () {
             sessionStorage.setItem("contato", input_contato.value);
             sessionStorage.setItem("fone", input_fone_number.value);
             sessionStorage.setItem("representante", input_rep.value);
-
-            alert(
-                `Empresa: ${sessionStorage.getItem("empresa")}\n` +
-                `CNPJ: ${sessionStorage.getItem("cnpj")}\n` +
-                `Endereço: ${sessionStorage.getItem("endereco")}\n` +
-                `Cidade: ${sessionStorage.getItem("cidade")}\n` +
-                `UF: ${sessionStorage.getItem("uf")}\n` +
-                `CEP: ${sessionStorage.getItem("cep")}\n` +
-                `Contato: ${sessionStorage.getItem("contato")}\n` +
-                `Fone: ${sessionStorage.getItem("fone")}\n` +
-                `Representante: ${sessionStorage.getItem("representante")}\n` +
-                `Observação: ${sessionStorage.getItem("obs")}`
-            );
+            sessionStorage.setItem("observacao item", obs_pedido.value);
         }
+
+        itens.forEach(item => {
+            item.obs_pedido = obs_pedido.value;
+        });
+
+        console.log(itens);
+
+        fetch('http://127.0.0.1:3000/order_input', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(itens)
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Erro ao inserir o pedido!');
+                }
+            })
+            .then(data => {
+                alert('Pedido inserido com sucesso!');
+                console.log('Pedido inserido:', data);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            });
+
+
     });
 
     // ------------------------------------------------------
@@ -135,7 +154,8 @@ window.addEventListener("DOMContentLoaded", async function () {
     addBtn.addEventListener("click", () => {
         let productName = searchBox.value.trim();
         let quantity = quantityBox.value.trim();
-        let observation = obs.value.trim();
+        let observation = obs_item.value.trim();
+
 
         if (productName === "" || quantity === "" || isNaN(quantity)) {
             alert("Campo Produto e QTD não podem ser vazios");
@@ -145,7 +165,6 @@ window.addEventListener("DOMContentLoaded", async function () {
         let product = products.find(item => item.ARTIGO === productName);
         let productCode = product ? product.COD : "Desenvolver";
 
-        // Adiciona o item ao array
         itens.push({
             data: data,
             cliente: input_empresa.value,
@@ -159,11 +178,10 @@ window.addEventListener("DOMContentLoaded", async function () {
             representante: input_rep.value,
             codigo: productCode,
             produto: productName,
-            qtd : quantity,
-            obs_item: observation
+            qtd: quantity,
+            obs_item: observation,
         });
 
-        // Adiciona o item na tabela
         let row = document.createElement("tr");
         row.innerHTML = `
             <td>${productCode}</td>
@@ -173,13 +191,13 @@ window.addEventListener("DOMContentLoaded", async function () {
         `;
         productTable.appendChild(row);
 
-        // Limpa os campos de entrada
+
         searchBox.value = "";
         quantityBox.value = "";
-        obs.value = "";
+        obs_item.value = "";
 
-        console.log(itens); // Ver o array no console
     });
+
 
     // ------------------------------------------------------
     // SALVAR O PDF
