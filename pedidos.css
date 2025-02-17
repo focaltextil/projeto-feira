@@ -65,6 +65,7 @@ header h2{
     flex-direction: column;
     width: 100vw;
     padding: 1vw 4vw;
+    margin-bottom: 3vw;
 }
 
 .dados_pedido{
@@ -177,6 +178,7 @@ input[type="number"]::-webkit-outer-spin-button {
 #icone_add_produto{
     background-color: var(--verde);
     width: 10vw;
+    font-size: 1vw;
     color: var(--bg);
     padding: 0.3vw 0.2vw;
     border: none;
@@ -416,6 +418,7 @@ input[type="number"]::-webkit-outer-spin-button {
     color: var(--bg);
     border-radius: 0.2vw;
     width: 20%;
+    font-size: 1.5vw;
     cursor: pointer;
 }
 
@@ -426,6 +429,7 @@ input[type="number"]::-webkit-outer-spin-button {
     color: var(--bg);
     border-radius: 0.2vw;
     width: 20%;
+    font-size: 1.5vw;
     cursor: pointer;
 }
 
@@ -436,6 +440,7 @@ input[type="number"]::-webkit-outer-spin-button {
     color: var(--bg);
     border-radius: 0.2vw;
     width: 20%;
+    font-size: 1.5vw;
     cursor: pointer;
 }
 

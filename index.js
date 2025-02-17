@@ -76,10 +76,9 @@ window.addEventListener("DOMContentLoaded", async function () {
             item.obs_pedido = obs_pedido.value;
         });
 
-        console.log(itens);
 
         // fetch('http://127.0.0.1:3000/order_input', {
-        fetch( 'https://api-tbpreco.onrender.com/order_input',{
+        fetch('https://api-tbpreco.onrender.com/order_input', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -96,6 +95,7 @@ window.addEventListener("DOMContentLoaded", async function () {
             .then(data => {
                 alert('Pedido inserido com sucesso!');
                 console.log('Pedido inserido:', data);
+                window.location.reload()
             })
             .catch(error => {
                 console.error('Erro:', error);
@@ -103,6 +103,7 @@ window.addEventListener("DOMContentLoaded", async function () {
 
 
     });
+
 
     // ------------------------------------------------------
     // FILTRAR E SUGERIR PRODUTOS
