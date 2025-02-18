@@ -49,6 +49,60 @@ window.addEventListener("DOMContentLoaded", async function () {
     // ------------------------------------------------------
     // GUARDAR VALORES NO SESSION STORAGE
 
+    // btn_inserir.addEventListener("click", function () {
+    //     if (
+    //         !input_empresa.value.trim() ||
+    //         !input_city.value.trim() ||
+    //         !input_uf.value.trim() ||
+    //         !input_contato.value.trim() ||
+    //         !input_fone_number.value.trim() ||
+    //         !input_rep.value.trim()
+    //     ) {
+    //         alert("Por favor, preencha todos os campos Obrigatórios");
+    //     } 
+        
+    //     // else {
+    //     //     sessionStorage.setItem("empresa", input_empresa.value);
+    //     //     sessionStorage.setItem("cnpj", input_cnpj.value);
+    //     //     sessionStorage.setItem("endereco", input_end.value);
+    //     //     sessionStorage.setItem("cidade", input_city.value);
+    //     //     sessionStorage.setItem("uf", input_uf.value);
+    //     //     sessionStorage.setItem("cep", input_cep.value);
+    //     //     sessionStorage.setItem("contato", input_contato.value);
+    //     //     sessionStorage.setItem("fone", input_fone_number.value);
+    //     //     sessionStorage.setItem("representante", input_rep.value);
+    //     //     sessionStorage.setItem("observacao item", obs_pedido.value);
+    //     // }
+
+    //     itens.forEach(item => {
+    //         item.obs_pedido = obs_pedido.value;
+    //     });
+
+
+    //     fetch('https://api-tbpreco.onrender.com/order_input', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(itens)
+    //     })
+    //         .then(response => {
+    //             if (response.ok) {
+    //                 return response.json();
+    //             } else {
+    //                 throw new Error('Erro ao inserir o pedido!');
+    //             }
+    //         })
+    //         .then(data => {
+                
+    //             alert('Pedido inserido com sucesso!')
+                
+    //         })
+    //         .catch(error => {
+    //             console.error('Erro:', error);
+    //         });
+    // });
+
     btn_inserir.addEventListener("click", function () {
         if (
             !input_empresa.value.trim() ||
@@ -59,61 +113,55 @@ window.addEventListener("DOMContentLoaded", async function () {
             !input_rep.value.trim()
         ) {
             alert("Por favor, preencha todos os campos Obrigatórios");
+        } else if (itens.length === 0) { 
+            alert("Você precisa adicionar pelo menos um item ao pedido.");
         } else {
-            sessionStorage.setItem("empresa", input_empresa.value);
-            sessionStorage.setItem("cnpj", input_cnpj.value);
-            sessionStorage.setItem("endereco", input_end.value);
-            sessionStorage.setItem("cidade", input_city.value);
-            sessionStorage.setItem("uf", input_uf.value);
-            sessionStorage.setItem("cep", input_cep.value);
-            sessionStorage.setItem("contato", input_contato.value);
-            sessionStorage.setItem("fone", input_fone_number.value);
-            sessionStorage.setItem("representante", input_rep.value);
-            sessionStorage.setItem("observacao item", obs_pedido.value);
-        }
-
-        itens.forEach(item => {
-            item.obs_pedido = obs_pedido.value;
-        });
-
-
-        fetch('http://127.0.0.1:3000/order_input', {
-        // fetch('https://api-tbpreco.onrender.com/order_input', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(itens)
-        })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Erro ao inserir o pedido!');
-                }
-            })
-            .then(data => {
-                
-                alert('Pedido inserido com sucesso!')
-                
-            })
-            .catch(error => {
-                console.error('Erro:', error);
+            itens.forEach(item => {
+                item.obs_pedido = obs_pedido.value;
             });
+    
+            fetch('https://api-tbpreco.onrender.com/order_input', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(itens)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Erro ao inserir o pedido!');
+                    }
+                })
+                .then(data => {
+                    alert('Pedido inserido com sucesso!')
+                    window.location.reload();
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                });
+        }
     });
-
+    
 
     // ------------------------------------------------------
     // FILTRAR E SUGERIR PRODUTOS
 
     function updateSuggestions(filter = "") {
+
         suggestions.innerHTML = "";
+
         let filterParts = filter.toLowerCase().split("%").filter(part => part.trim() !== "");
+
         let filtered = products.filter(item => filterParts.every(part => item.ARTIGO.toLowerCase().includes(part)));
 
         if (filtered.length > 0 && filter !== "") {
+
             suggestions.style.display = "flex";
+
             filtered.forEach(item => {
+
                 let div = document.createElement("div");
                 div.textContent = item.ARTIGO;
                 div.onclick = function () {
@@ -122,6 +170,7 @@ window.addEventListener("DOMContentLoaded", async function () {
                 };
                 suggestions.appendChild(div);
             });
+
         } else {
             suggestions.style.display = "none";
         }
@@ -136,7 +185,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     });
 
     // ------------------------------------------------------
-    // MODAL DE ADIÇÃO DE PRODUTOS
+    // MODAL DE ADICAO DE PRODUTOS
 
     btn_fechar.addEventListener("click", function () {
         modal.style.display = "none";
