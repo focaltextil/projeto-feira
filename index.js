@@ -77,8 +77,8 @@ window.addEventListener("DOMContentLoaded", async function () {
         });
 
 
-        // fetch('http://127.0.0.1:3000/order_input', {
-        fetch('https://api-tbpreco.onrender.com/order_input', {
+        fetch('http://127.0.0.1:3000/order_input', {
+        // fetch('https://api-tbpreco.onrender.com/order_input', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -93,15 +93,13 @@ window.addEventListener("DOMContentLoaded", async function () {
                 }
             })
             .then(data => {
-                alert('Pedido inserido com sucesso!');
-                console.log('Pedido inserido:', data);
-                window.location.reload()
+                
+                alert('Pedido inserido com sucesso!')
+                
             })
             .catch(error => {
                 console.error('Erro:', error);
             });
-
-
     });
 
 
