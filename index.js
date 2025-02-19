@@ -49,60 +49,6 @@ window.addEventListener("DOMContentLoaded", async function () {
     // ------------------------------------------------------
     // GUARDAR VALORES NO SESSION STORAGE
 
-    // btn_inserir.addEventListener("click", function () {
-    //     if (
-    //         !input_empresa.value.trim() ||
-    //         !input_city.value.trim() ||
-    //         !input_uf.value.trim() ||
-    //         !input_contato.value.trim() ||
-    //         !input_fone_number.value.trim() ||
-    //         !input_rep.value.trim()
-    //     ) {
-    //         alert("Por favor, preencha todos os campos Obrigatórios");
-    //     } 
-        
-    //     // else {
-    //     //     sessionStorage.setItem("empresa", input_empresa.value);
-    //     //     sessionStorage.setItem("cnpj", input_cnpj.value);
-    //     //     sessionStorage.setItem("endereco", input_end.value);
-    //     //     sessionStorage.setItem("cidade", input_city.value);
-    //     //     sessionStorage.setItem("uf", input_uf.value);
-    //     //     sessionStorage.setItem("cep", input_cep.value);
-    //     //     sessionStorage.setItem("contato", input_contato.value);
-    //     //     sessionStorage.setItem("fone", input_fone_number.value);
-    //     //     sessionStorage.setItem("representante", input_rep.value);
-    //     //     sessionStorage.setItem("observacao item", obs_pedido.value);
-    //     // }
-
-    //     itens.forEach(item => {
-    //         item.obs_pedido = obs_pedido.value;
-    //     });
-
-
-    //     fetch('https://api-tbpreco.onrender.com/order_input', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify(itens)
-    //     })
-    //         .then(response => {
-    //             if (response.ok) {
-    //                 return response.json();
-    //             } else {
-    //                 throw new Error('Erro ao inserir o pedido!');
-    //             }
-    //         })
-    //         .then(data => {
-                
-    //             alert('Pedido inserido com sucesso!')
-                
-    //         })
-    //         .catch(error => {
-    //             console.error('Erro:', error);
-    //         });
-    // });
-
     btn_inserir.addEventListener("click", function () {
         if (
             !input_empresa.value.trim() ||
@@ -120,7 +66,9 @@ window.addEventListener("DOMContentLoaded", async function () {
                 item.obs_pedido = obs_pedido.value;
             });
     
-            fetch('https://api-tbpreco.onrender.com/order_input', {
+            // fetch('https://api-tbpreco.onrender.com/order_input', {
+            fetch('http://192.168.1.80:3000/order_input', {
+
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -444,3 +444,15 @@ input[type="number"]::-webkit-outer-spin-button {
     cursor: pointer;
 }
 
+/* -----------------------------------------------------------------------*/
+/* VERSAO MOBILE */
+
+@media (max-width: 768px){
+
+    body{
+        display: none
+    };
+
+
+
+}
