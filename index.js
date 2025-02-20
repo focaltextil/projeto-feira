@@ -32,9 +32,11 @@ window.addEventListener("DOMContentLoaded", async function () {
     let addBtn = document.getElementById("add-btn");
     let productTable = document.getElementById("productTable");
     let btn_fechar = document.getElementById("btn-fechar");
-    let btn_abrir = document.getElementById("icone_add_produto");
+    let btn_add_item = document.getElementById("icone_add_produto");
     let modal = document.querySelector(".modal");
+    let reiniciar_btn = document.getElementById("reiniciar-btn");
     const btn_pdf = document.getElementById("salvar_pdf");
+
 
     // ------------------------------------------------------
     // RESTRINGIR TECLAS DO CNPJ
@@ -86,7 +88,8 @@ window.addEventListener("DOMContentLoaded", async function () {
                 })
                 .then(data => {
                     alert('Pedido inserido com sucesso!')
-                    window.location.reload();
+                    gerarPDF();
+                    // window.location.reload();
                 })
                 .catch(error => {
                     console.error('Erro:', error);
@@ -141,7 +144,7 @@ window.addEventListener("DOMContentLoaded", async function () {
         modal.style.display = "none";
     });
 
-    btn_abrir.addEventListener("click", function () {
+    btn_add_item.addEventListener("click", function () {
         if (
             !input_empresa.value.trim() ||
             !input_city.value.trim() ||
@@ -155,6 +158,12 @@ window.addEventListener("DOMContentLoaded", async function () {
         }
     
         modal.style.display = "block";
+    });
+
+    reiniciar_btn.addEventListener("click", function(){
+
+        alert("Essa função ainda está sendo desenvolvida, o cabeçalho do pedido vai permanecer, e o itens vão sumir");
+        
     });
     
     // ------------------------------------------------------
