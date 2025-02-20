@@ -8,7 +8,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     // ------------------------------------------------------
     // VARIAVEIS MUITO LOUCAS
 
-    const btn_inserir = document.getElementById("concluir-btn");
+    const btn_concluir = document.getElementById("concluir-btn");
     let input_empresa = document.getElementById("cliente");
     let input_cnpj = document.getElementById("cnpj");
     let input_end = document.getElementById("end");
@@ -49,7 +49,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     // ------------------------------------------------------
     // GUARDAR VALORES NO SESSION STORAGE
 
-    btn_inserir.addEventListener("click", function () {
+    btn_concluir.addEventListener("click", function () {
         if (
             !input_empresa.value.trim() ||
             !input_city.value.trim() ||
@@ -59,15 +59,17 @@ window.addEventListener("DOMContentLoaded", async function () {
             !input_rep.value.trim()
         ) {
             alert("Por favor, preencha todos os campos Obrigatórios");
+
         } else if (itens.length === 0) { 
+
             alert("Você precisa adicionar pelo menos um item ao pedido.");
         } else {
+
             itens.forEach(item => {
                 item.obs_pedido = obs_pedido.value;
             });
     
-            // fetch('https://api-tbpreco.onrender.com/order_input', {
-            fetch('http://192.168.1.80:3000/order_input', {
+            fetch('http://192.168.1.176:65000/order_input', {
 
                 method: 'POST',
                 headers: {
@@ -140,9 +142,21 @@ window.addEventListener("DOMContentLoaded", async function () {
     });
 
     btn_abrir.addEventListener("click", function () {
+        if (
+            !input_empresa.value.trim() ||
+            !input_city.value.trim() ||
+            !input_uf.value.trim() ||
+            !input_contato.value.trim() ||
+            !input_fone_number.value.trim() ||
+            !input_rep.value.trim()
+        ) {
+            alert("Os Campos com * São obrigatórios");
+            return;
+        }
+    
         modal.style.display = "block";
     });
-
+    
     // ------------------------------------------------------
     // ARRAY PARA ITENS E MONTAR O PEDIDO
 
