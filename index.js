@@ -119,7 +119,6 @@ window.addEventListener("DOMContentLoaded", async function () {
         });
     }
     
-
     // ------------------------------------------------------
     // FILTRAR E SUGERIR PRODUTOS
 
@@ -195,6 +194,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     const itens = [];
 
     addBtn.addEventListener("click", () => {
+        
         let productName = searchBox.value.trim();
         let quantity = quantityBox.value.trim();
         let observation = obs_item.value.trim();
