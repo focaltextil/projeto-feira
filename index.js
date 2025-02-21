@@ -60,7 +60,7 @@ window.addEventListener("DOMContentLoaded", async function () {
             !input_fone_number.value.trim() ||
             !input_rep.value.trim()
         ) {
-            alert("Por favor, preencha todos os campos Obrigatórios");
+            alert("Não é possível inserir um pedido em branco");
 
         } else if (itens.length === 0) { 
 
@@ -87,15 +87,37 @@ window.addEventListener("DOMContentLoaded", async function () {
                     }
                 })
                 .then(data => {
-                    alert('Pedido inserido com sucesso!')
+                    alert('Pedido inserido com sucesso!');
                     gerarPDF();
-                    // window.location.reload();
+                    let campos = document.querySelectorAll(".entrada");
+                
+                    campos.forEach(campo => {
+                        campo.value = "";
+                    });
+
+                    itens.length = 0;
+                    renderizarTabela();
                 })
+                
                 .catch(error => {
                     console.error('Erro:', error);
                 });
         }
     });
+    
+
+    // ------------------------------------------------------
+    // RENDERIZAR A TABELA DE PEDIDOS
+
+    function renderizarTabela() {
+        let tabela = document.querySelector("#productTable");
+    
+ 
+        let rows = tabela.querySelectorAll("tr:not(:first-child)");
+        rows.forEach(row => {
+            row.remove();
+        });
+    }
     
 
     // ------------------------------------------------------
@@ -162,7 +184,8 @@ window.addEventListener("DOMContentLoaded", async function () {
 
     reiniciar_btn.addEventListener("click", function(){
 
-        window.location.reload();
+        obs_pedido.value = "";
+        renderizarTabela();
         
     });
     
@@ -219,7 +242,6 @@ window.addEventListener("DOMContentLoaded", async function () {
             let index = itens.findIndex(item => item.produto === productName && item.qtd === quantity);
             if (index !== -1) {
                 itens[index].obs_item = this.innerText.trim();
-                console.log("Observação atualizada:", itens[index]);
             }
         });
     
@@ -228,7 +250,6 @@ window.addEventListener("DOMContentLoaded", async function () {
             let index = itens.findIndex(item => item.produto === productName && item.qtd === quantity);
             if (index !== -1) {
                 itens.splice(index, 1);
-                console.log("Item removido:", productName);
             }
             row.remove();
         });
@@ -236,12 +257,10 @@ window.addEventListener("DOMContentLoaded", async function () {
         searchBox.value = "";
         quantityBox.value = "";
         obs_item.value = "";
-    
-        console.log(itens);
+
     });
     
     
-
 
     // ------------------------------------------------------
     // SALVAR O PDF
