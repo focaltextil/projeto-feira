@@ -162,7 +162,7 @@ window.addEventListener("DOMContentLoaded", async function () {
 
     reiniciar_btn.addEventListener("click", function(){
 
-        alert("Essa função ainda está sendo desenvolvida, o cabeçalho do pedido vai permanecer, e o itens vão sumir");
+        window.location.reload();
         
     });
     
@@ -175,17 +175,16 @@ window.addEventListener("DOMContentLoaded", async function () {
         let productName = searchBox.value.trim();
         let quantity = quantityBox.value.trim();
         let observation = obs_item.value.trim();
-
-
+    
         if (productName === "" || quantity === "" || isNaN(quantity)) {
             alert("Campo Produto e QTD não podem ser vazios");
             return;
         }
-
+    
         let product = products.find(item => item.ARTIGO === productName);
         let productCode = product ? product.COD : "Desenvolver";
-
-        itens.push({
+    
+        let newItem = {
             data: data,
             cliente: input_empresa.value,
             cnpj: input_cnpj.value,
@@ -200,23 +199,48 @@ window.addEventListener("DOMContentLoaded", async function () {
             produto: productName,
             qtd: quantity,
             obs_item: observation,
-        });
-
+        };
+    
+        itens.push(newItem);
+    
         let row = document.createElement("tr");
         row.innerHTML = `
             <td>${productCode}</td>
             <td>${productName}</td>
             <td>${quantity}</td>
-            <td>${observation}</td>
+            <td contenteditable="true" class="editable-obs" style="outline: none">${observation}</td>
+            <td><img src="./trash-bin.png" class="btn-delete" style="cursor: pointer; width: 1.5vw;"></td>
         `;
+        
         productTable.appendChild(row);
+    
 
+        row.querySelector(".editable-obs").addEventListener("blur", function () {
+            let index = itens.findIndex(item => item.produto === productName && item.qtd === quantity);
+            if (index !== -1) {
+                itens[index].obs_item = this.innerText.trim();
+                console.log("Observação atualizada:", itens[index]);
+            }
+        });
+    
 
+        row.querySelector(".btn-delete").addEventListener("click", function () {
+            let index = itens.findIndex(item => item.produto === productName && item.qtd === quantity);
+            if (index !== -1) {
+                itens.splice(index, 1);
+                console.log("Item removido:", productName);
+            }
+            row.remove();
+        });
+    
         searchBox.value = "";
         quantityBox.value = "";
         obs_item.value = "";
-
+    
+        console.log(itens);
     });
+    
+    
 
 
     // ------------------------------------------------------

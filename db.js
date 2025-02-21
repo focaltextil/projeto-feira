@@ -1,11 +1,24 @@
-const fileUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQltJw9duOKFTUqUmDYl-6HXmen4KwDmfqiRZt3uPlcTe-za9WhIEGCYne248NrYHvfuYlIKfIvFaj-/pub?gid=0&single=true&output=csv";
-
 async function loadExcelData() {
     try {
         const savedData = sessionStorage.getItem('base_produtos');
         if (savedData) {
             return JSON.parse(savedData);
         }
+
+        const fileUrlResponse = await fetch('planilha/sheet.json');
+        if (!fileUrlResponse.ok) {
+            throw new Error(`Erro ao carregar sheet.json: ${fileUrlResponse.statusText}`);
+        }
+
+        const fileUrlData = await fileUrlResponse.json();
+
+
+        if (!Array.isArray(fileUrlData) || fileUrlData.length === 0 || !fileUrlData[0].planilha) {
+            throw new Error('Estrutura do JSON inválida ou URL não encontrada.');
+        }
+
+        const fileUrl = fileUrlData[0].planilha;
+
 
         const response = await fetch(fileUrl);
         if (!response.ok) {
@@ -53,9 +66,3 @@ async function loadExcelData() {
 }
 
 loadExcelData()
-    .then(jsonData => {
-        console.log('Dados carregados');
-    })
-    .catch(error => {
-        console.error('Erro durante a execução:', error);
-    });
