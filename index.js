@@ -6,7 +6,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     let products = JSON.parse(sessionStorage.getItem("base_produtos")) || [];
 
     // ------------------------------------------------------
-    // VARIAVEIS MUITO LOUCAS
+    // VARIAVEIS DO CLIENTE
 
     const btn_concluir = document.getElementById("concluir-btn");
     let input_empresa = document.getElementById("cliente");
@@ -22,7 +22,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     const data = new Date().toISOString().split("T")[0];
 
     // ------------------------------------------------------
-    // VARIAVEIS DO PEDIDO DESSE POVO CHATO
+    // VARIAVEIS DO PEDIDO
 
     let searchBox = document.getElementById("searchBox");
     let quantityBox = document.getElementById("quantityBox");
@@ -184,8 +184,8 @@ window.addEventListener("DOMContentLoaded", async function () {
     reiniciar_btn.addEventListener("click", function(){
 
         obs_pedido.value = "";
-        renderizarTabela();
-        
+        renderizarTabela();  
+        Renderizar_card();  
     });
     
     // ------------------------------------------------------
@@ -194,7 +194,6 @@ window.addEventListener("DOMContentLoaded", async function () {
     const itens = [];
 
     addBtn.addEventListener("click", () => {
-        
         let productName = searchBox.value.trim();
         let quantity = quantityBox.value.trim();
         let observation = obs_item.value.trim();
@@ -223,7 +222,7 @@ window.addEventListener("DOMContentLoaded", async function () {
             qtd: quantity,
             obs_item: observation,
         };
-    
+        
         itens.push(newItem);
     
         let row = document.createElement("tr");
@@ -232,36 +231,65 @@ window.addEventListener("DOMContentLoaded", async function () {
             <td>${productName}</td>
             <td>${quantity}</td>
             <td contenteditable="true" class="editable-obs" style="outline: none">${observation}</td>
-            <td><img src="./trash-bin.png" class="btn-delete" style="cursor: pointer; width: 1.5vw;"></td>
+            <td><img src="./trash-bin.png" class="btn-delete" style="cursor: pointer;"></td>
         `;
-        
+    
         productTable.appendChild(row);
     
-
-        row.querySelector(".editable-obs").addEventListener("blur", function () {
-            let index = itens.findIndex(item => item.produto === productName && item.qtd === quantity);
-            if (index !== -1) {
-                itens[index].obs_item = this.innerText.trim();
-            }
-        });
-    
-
         row.querySelector(".btn-delete").addEventListener("click", function () {
             let index = itens.findIndex(item => item.produto === productName && item.qtd === quantity);
             if (index !== -1) {
                 itens.splice(index, 1);
             }
             row.remove();
+            Renderizar_card();
         });
     
         searchBox.value = "";
         quantityBox.value = "";
         obs_item.value = "";
-
+    
+        Renderizar_card();
     });
     
     
-
+    function Renderizar_card() {
+        const cardsContainer = document.getElementById("cardsContainer");
+        cardsContainer.innerHTML = "";
+    
+        let tabela = document.getElementById("productTable");
+        let rows = tabela.querySelectorAll("tr:not(:first-child)");
+    
+        rows.forEach(row => {
+            let card = document.createElement("div");
+            card.classList.add("card");
+    
+            card.innerHTML = `
+                <p>${row.cells[1].innerText}</p>
+                <p><strong>Código:</strong> ${row.cells[0].innerText}</p>
+                <p><strong>Quantidade:</strong> ${row.cells[2].innerText}</p>
+                <p><strong>Observação:</strong> ${row.cells[3].innerText}</p>
+                <img src="./trash-bin.png" class="btn-delete" style="cursor: pointer;">
+            `;
+    
+            card.querySelector(".btn-delete").addEventListener("click", function () {
+                let productName = row.cells[1].innerText;
+                let quantity = row.cells[2].innerText;
+    
+                let index = itens.findIndex(item => item.produto === productName && item.qtd === quantity);
+                if (index !== -1) {
+                    itens.splice(index, 1);
+                }
+    
+                row.remove();
+                Renderizar_card();
+            });
+    
+            cardsContainer.appendChild(card);
+        });
+    }
+    
+    
     // ------------------------------------------------------
     // SALVAR O PDF
 

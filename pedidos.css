@@ -160,6 +160,9 @@ input[type="number"]::-webkit-outer-spin-button {
     overflow-x: hidden;
 }
 
+.cards-container{
+    display: none;
+}
 
 /* ------------------------------------------ */
 /* SECCAO QUE ACRESCENTA ITEM NOVO: */
@@ -239,6 +242,9 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
+.btn-delete{
+    width: 2vw;
+}
 
 /* -------------------------------------------------- */
 /* MODAL SATANICO */
@@ -248,7 +254,8 @@ input[type="number"]::-webkit-outer-spin-button {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #466b81;
+    background-color: var(--bg);
+    border: 0.2vw solid var(--azul-escuro);
     flex-direction: column;
     width: 90vw;
     height: 40vw; 
@@ -282,7 +289,7 @@ input[type="number"]::-webkit-outer-spin-button {
     border-radius: 0.3vw;
     padding: 0.5vw;
     outline: none;
-    border: none;
+    border: 1px solid var(--azul-escuro);
     color: var(--azul);
 }
 
@@ -292,7 +299,7 @@ input[type="number"]::-webkit-outer-spin-button {
     justify-content: left;
     flex-direction: row;
     align-items: center;
-    color: var(--bg);
+    color: var(--azul-escuro);
     width: 10%;
 
 }
@@ -300,7 +307,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .qtd input{
     width: 50%;
     outline: none;
-    border: none;
+    border: 1px solid var(--azul-escuro);
     border-radius: 0.3vw;
     padding: 0.5vw;
 }
@@ -325,17 +332,17 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .btn-fechar h2{
-    color: var(--bg);
+    color: var(--azul);
 }
 
 .obs label{
-    color: var(--bg);
+    color: var(--azul-escuro);
 }
 
 #obs_item{
     width: 20vw;
     outline: none;
-    border: none;
+    border: 1px solid var(--azul-escuro);
     border-radius: 0.3vw;
     padding: 0.5vw;
 }
@@ -368,7 +375,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .suggestions div{
     text-align: left;
     cursor: pointer;
-    color: var(--bg);
+    color: var(--azul-escuro);
     line-height: 1.5vw;
 }
 
@@ -398,6 +405,9 @@ input[type="number"]::-webkit-outer-spin-button {
     margin: 0;
 }
 
+#divisor{
+    display: none;
+}
 
 /* ----------------------------------------------------- */
 /* BOTOES INFERIOES */
@@ -447,12 +457,268 @@ input[type="number"]::-webkit-outer-spin-button {
 /* -----------------------------------------------------------------------*/
 /* VERSAO MOBILE */
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
 
     body{
-        display: none
-    };
+        height: 100%;
+        overflow-x: scroll;
+    }
+
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
 
 
+    .div-icon img {
+        display: none;
+    }
+
+    .linha-1, .linha-2, .linha-3 {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        border-bottom: none !important;
+    }
+
+    input{
+        border: none;
+        border-bottom: 2px solid var(--azul) !important;
+        padding-bottom: 5px;
+        outline: none;
+    }
+    
+    .inputs label{
+        text-align: left;
+        font-size: 5vw;
+    }
+
+    #cliente, #end, #cnpj, #cidade, #cep, #contato, #telefone, #rep{
+        font-size: 4vw;
+    }
+
+
+    .inputs{
+        flex-direction: column;
+        font-size: 4vw;
+        width: 100%;
+    }
+
+    #input1{
+        width: 100%;
+    }
+    
+    #input3{
+        width: 100%;
+    }
+    
+    #input5{
+        display: flex;
+        flex-direction: row;
+    }
+
+    #divisor{
+        display: block;
+        border: 1.5px solid var(--azul);
+        width: 83vw;
+    }
+
+    #select{
+        width: 20vw;
+        font-size: 5vw;
+        
+    }
+
+    option{
+        font-size: 4vw;
+        
+    }
+
+    table{
+        display: none;
+    }
+
+    .cards-container{
+        background-color: #D9D9D9;
+        border-radius: 1vw;
+        width: 90vw;
+        padding: 3vw;
+        display: block;
+        text-align: left;
+        color: var(--azul-escuro);
+    }
+
+    .cards-container p{
+        font-size: 4vw;
+    }
+
+    .btn-delete{
+        width: 10vw;
+        margin-top: 2vw;
+    }
+
+    /* --------------------------------------------------------- */
+    
+    .modal{
+        position: fixed;
+        background-color: var(--bg);
+        flex-direction: column;
+        padding-top: 10vw;
+        width: 100vw;
+        height: 100vh; 
+    }
+ 
+    /* SECCAO QUE ACRESCENTA ITEM NOVO --------------------------*/
+
+    .div-add{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 1vw;
+        width: 100vw;
+
+    }
+
+    #icone_add_produto{
+        background-color: var(--verde);
+        width: 90vw;
+        font-size: 5vw;
+        color: var(--bg);
+        padding: 1vw;
+        border: none;
+        border-radius: 0.2vw;
+        cursor: pointer;
+    }
+
+    /* --------------------------------------------------------- */
+
+    .produto{
+        flex-direction: column;
+        gap: 1vw;
+    }
+    
+    
+    .btn-fechar{
+        align-items: center;
+    }
+
+    #btn-fechar{
+        width: 8vw;
+        font-size: 7vw;
+    }
+
+    #searchBox{
+        display: flex;
+        width: 90vw;
+        border-radius: 0.3vw;
+        padding: 0.5vw;
+        outline: none;
+        border: 1px solid var(--azul-escuro);
+        color: var(--azul);
+        font-size: 5vw;
+    }
+
+    .qtd{
+        justify-content: left;
+        flex-direction: column;
+        width: 90vw;
+    
+    }
+
+    .qtd label{
+        font-size: 5vw;
+    }
+    
+    .qtd input{
+        width: 90vw;
+        font-size: 5vw;
+    }
+
+    .obs{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .obs label{
+        font-size: 5vw;
+    }
+    
+    #obs_item{
+        width: 90vw;
+        outline: none;
+        border-radius: 0.3vw;
+        padding: 0.5vw;
+        font-size: 5vw;
+    }
+    
+
+    #add-btn{
+        padding: 0.2vw 10vw;
+        width: 90vw;
+        font-size: 5vw;
+        height: 8vw;
+        background-color: var(--verde);
+        border: none;
+        color: var(--bg);
+    }
+
+    .container-produtos{
+        height: 100vh;
+    }
+
+    #suggestions{
+        max-height: 55vh;
+    }
+
+    .suggestions div{
+        line-height: 5vw;
+    }
+
+    .obs_pedido label{
+        font-size: 6vw;
+    }
+
+  
+    #obs_pedido{
+        display: flex;
+        font-size: 5vw;
+        padding: 5px;
+        background-color: var(--cor-tabela);
+        border: none;
+        height: auto;
+        outline: none;
+        margin: 0;
+    }
+    
+
+    /* --------------------------------------------------------- */
+
+
+    .bts {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #reiniciar-btn {
+        width: 100%;
+        font-size: 4vw;
+        padding: 4vw;
+    }
+
+    #salvar_pdf {
+        width: 100%;
+        font-size: 4vw;
+        padding: 4vw;
+    }
+
+    #concluir-btn {
+        width: 100%;
+        font-size: 4vw;
+        padding: 4vw;
+    }
 
 }
