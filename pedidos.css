@@ -26,7 +26,6 @@
 
 body{
     display: flex;
-    justify-content: center;
     flex-direction: column;
     overflow-x: hidden;
 }
@@ -461,6 +460,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
     body{
         height: 100%;
+        padding-top: 5vw;
         overflow-x: scroll;
     }
 
@@ -470,7 +470,6 @@ input[type="number"]::-webkit-outer-spin-button {
         align-items: center;
         text-align: center;
     }
-
 
     .div-icon img {
         display: none;
@@ -488,6 +487,11 @@ input[type="number"]::-webkit-outer-spin-button {
         border-bottom: 2px solid var(--azul) !important;
         padding-bottom: 5px;
         outline: none;
+    }
+
+
+    .inputs input{
+        width: 90vw;
     }
     
     .inputs label{
@@ -522,7 +526,7 @@ input[type="number"]::-webkit-outer-spin-button {
     #divisor{
         display: block;
         border: 1.5px solid var(--azul);
-        width: 83vw;
+        width: 90vw;
     }
 
     #select{
@@ -555,7 +559,7 @@ input[type="number"]::-webkit-outer-spin-button {
     }
 
     .btn-delete{
-        width: 10vw;
+        width: 7vw;
         margin-top: 2vw;
     }
 
@@ -586,10 +590,14 @@ input[type="number"]::-webkit-outer-spin-button {
         width: 90vw;
         font-size: 5vw;
         color: var(--bg);
-        padding: 1vw;
+        padding: 3vw;
         border: none;
-        border-radius: 0.2vw;
+        border-radius: 1vw;
         cursor: pointer;
+    }
+
+    #cardsContainer{
+        min-height: 20vw;
     }
 
     /* --------------------------------------------------------- */
@@ -680,16 +688,24 @@ input[type="number"]::-webkit-outer-spin-button {
         font-size: 6vw;
     }
 
+    .obs_pedido{
+        width: 90vw;
+    }
+
   
     #obs_pedido{
         display: flex;
         font-size: 5vw;
-        padding: 5px;
+        padding: 1vw;
         background-color: var(--cor-tabela);
+        border-bottom: none !important;
         border: none;
-        height: auto;
+        border-radius: 1vw;
+        height: 20vw;
         outline: none;
-        margin: 0;
+        margin: 2vw 0 2vw 0;
+        width: 90vw;
+
     }
     
 
@@ -697,28 +713,34 @@ input[type="number"]::-webkit-outer-spin-button {
 
 
     .bts {
+        width: 90vw;
         display: flex;
-        width: 100%;
         flex-direction: column;
-        gap: 10px;
+        justify-content: center;
+        padding: 0;
+        gap: 2vw;
+        margin: 5vw auto;
     }
 
     #reiniciar-btn {
         width: 100%;
         font-size: 4vw;
         padding: 4vw;
+        border-radius: 1vw;
     }
 
     #salvar_pdf {
         width: 100%;
         font-size: 4vw;
         padding: 4vw;
+        border-radius: 1vw;
     }
 
     #concluir-btn {
         width: 100%;
         font-size: 4vw;
         padding: 4vw;
+        border-radius: 1vw;
     }
 
 }

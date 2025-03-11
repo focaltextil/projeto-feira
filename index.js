@@ -97,6 +97,7 @@ window.addEventListener("DOMContentLoaded", async function () {
 
                     itens.length = 0;
                     renderizarTabela();
+                    Renderizar_card();
                 })
                 
                 .catch(error => {
@@ -263,14 +264,18 @@ window.addEventListener("DOMContentLoaded", async function () {
         rows.forEach(row => {
             let card = document.createElement("div");
             card.classList.add("card");
-    
+                  
             card.innerHTML = `
-                <p>${row.cells[1].innerText}</p>
-                <p><strong>Código:</strong> ${row.cells[0].innerText}</p>
-                <p><strong>Quantidade:</strong> ${row.cells[2].innerText}</p>
-                <p><strong>Observação:</strong> ${row.cells[3].innerText}</p>
-                <img src="./trash-bin.png" class="btn-delete" style="cursor: pointer;">
-            `;
+                    <p>${row.cells[1].innerText}</p>
+                    <p><strong>Código:</strong> ${row.cells[0].innerText}</p>
+                    <p><strong>Quantidade:</strong> ${row.cells[2].innerText}</p>
+                    <p><strong style="min-width: 50vw">Observação:</strong> 
+                        <span contenteditable="true" class="editable-observacao">${row.cells[3].innerText}</span>
+                    </p>
+                    <img src="./trash-bin.png" class="btn-delete" style="cursor: pointer;">
+                `;
+
+
     
             card.querySelector(".btn-delete").addEventListener("click", function () {
                 let productName = row.cells[1].innerText;
