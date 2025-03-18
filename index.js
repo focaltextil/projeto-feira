@@ -127,20 +127,66 @@ window.addEventListener("DOMContentLoaded", async function () {
     // ------------------------------------------------------
     // FILTRAR E SUGERIR PRODUTOS
 
+    // function updateSuggestions(filter = "") {
+
+    //     suggestions.innerHTML = "";
+
+    //     let filterParts = filter.toLowerCase().split("%").filter(part => part.trim() !== "");
+
+    //     let filtered = products.filter(item => filterParts.every(part => item.ARTIGO.toLowerCase().includes(part)));
+
+    //     if (filtered.length > 0 && filter !== "") {
+
+    //         suggestions.style.display = "flex";
+
+    //         filtered.forEach(item => {
+
+    //             let div = document.createElement("div");
+    //             div.textContent = item.ARTIGO;
+    //             div.onclick = function () {
+    //                 searchBox.value = item.ARTIGO;
+    //                 suggestions.style.display = "none";
+    //             };
+    //             suggestions.appendChild(div);
+    //         });
+
+    //     } else {
+    //         suggestions.style.display = "none";
+    //     }
+    // }
+
+    // searchBox.addEventListener("input", (e) => updateSuggestions(e.target.value));
+
+    // document.addEventListener("click", (e) => {
+    //     if (!searchBox.contains(e.target) && !suggestions.contains(e.target)) {
+    //         suggestions.style.display = "none";
+    //     }
+    // });
+
     function updateSuggestions(filter = "") {
-
         suggestions.innerHTML = "";
-
+    
+        if (!filter.trim()) {
+            suggestions.style.display = "none";
+            return;
+        }
+    
         let filterParts = filter.toLowerCase().split("%").filter(part => part.trim() !== "");
-
-        let filtered = products.filter(item => filterParts.every(part => item.ARTIGO.toLowerCase().includes(part)));
-
-        if (filtered.length > 0 && filter !== "") {
-
+    
+        let filtered = products.filter(item => {
+            let article = item.ARTIGO.toLowerCase();
+    
+            // O primeiro termo precisa estar no início do nome do artigo
+            if (!article.startsWith(filterParts[0])) return false;
+    
+            // Os demais termos podem estar em qualquer posição do nome
+            return filterParts.slice(1).every(part => article.includes(part));
+        });
+    
+        if (filtered.length > 0) {
             suggestions.style.display = "flex";
-
+    
             filtered.forEach(item => {
-
                 let div = document.createElement("div");
                 div.textContent = item.ARTIGO;
                 div.onclick = function () {
@@ -149,19 +195,22 @@ window.addEventListener("DOMContentLoaded", async function () {
                 };
                 suggestions.appendChild(div);
             });
-
+    
         } else {
             suggestions.style.display = "none";
         }
     }
-
+    
+    // Evento de input no campo de busca
     searchBox.addEventListener("input", (e) => updateSuggestions(e.target.value));
-
+    
+    // Fecha sugestões ao clicar fora
     document.addEventListener("click", (e) => {
         if (!searchBox.contains(e.target) && !suggestions.contains(e.target)) {
             suggestions.style.display = "none";
         }
     });
+    
 
     // ------------------------------------------------------
     // MODAL DE ADICAO DE PRODUTOS
