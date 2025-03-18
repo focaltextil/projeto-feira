@@ -19,6 +19,8 @@ window.addEventListener("DOMContentLoaded", async function () {
     let input_fone_number = document.getElementById("telefone");
     let input_rep = document.getElementById("rep");
 
+    const wait_modal = document.getElementById('loading-modal');
+
     const data = new Date().toISOString().split("T")[0];
 
     // ------------------------------------------------------
@@ -49,9 +51,12 @@ window.addEventListener("DOMContentLoaded", async function () {
     });
 
     // ------------------------------------------------------
-    // GUARDAR VALORES NO SESSION STORAGE
+    // CONLUIR PEDIDO
 
     btn_concluir.addEventListener("click", function () {
+
+        wait_modal.style.display = "flex";
+
         if (
             !input_empresa.value.trim() ||
             !input_city.value.trim() ||
@@ -61,48 +66,47 @@ window.addEventListener("DOMContentLoaded", async function () {
             !input_rep.value.trim()
         ) {
             alert("Não é possível inserir um pedido em branco");
-
         } else if (itens.length === 0) { 
-
             alert("Você precisa adicionar pelo menos um item ao pedido.");
         } else {
-
             itens.forEach(item => {
                 item.obs_pedido = obs_pedido.value;
             });
-    
-            fetch('http://192.168.1.176:65000/order_input', {
 
+            
+            fetch('http://192.168.1.176:65000/order_input', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(itens)
             })
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    } else {
-                        throw new Error('Erro ao inserir o pedido!');
-                    }
-                })
-                .then(data => {
-                    alert('Pedido inserido com sucesso!');
-                    gerarPDF();
-                    let campos = document.querySelectorAll(".entrada");
-                
-                    campos.forEach(campo => {
-                        campo.value = "";
-                    });
-
-                    itens.length = 0;
-                    renderizarTabela();
-                    Renderizar_card();
-                })
-                
-                .catch(error => {
-                    console.error('Erro:', error);
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Erro na conexão API');
+                }
+            })
+            .then(data => {
+                alert('Pedido inserido com sucesso!');
+                wait_modal.style.display = "none";
+                gerarPDF();
+                let campos = document.querySelectorAll(".entrada");
+                campos.forEach(campo => {
+                    campo.value = "";
                 });
+    
+                itens.length = 0;
+                renderizarTabela();
+                Renderizar_card();
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert(`Erro ao Inserir Pedido!`);
+                wait_modal.style.display = "none";
+                
+            });
         }
     });
     
@@ -249,7 +253,6 @@ window.addEventListener("DOMContentLoaded", async function () {
         searchBox.value = "";
         quantityBox.value = "";
         obs_item.value = "";
-    
         Renderizar_card();
     });
     

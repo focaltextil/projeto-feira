@@ -148,6 +148,7 @@ label{
     color: var(--azul);
 }
 
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -166,6 +167,24 @@ input[type="number"]::-webkit-outer-spin-button {
 /* ------------------------------------------ */
 /* SECCAO QUE ACRESCENTA ITEM NOVO: */
 
+/* .div-add{
+    display: flex;
+    margin: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    margin-bottom: 1vw;
+    width: 96vw;
+    position: relative;
+
+}
+
+.mtd_pagamento{
+    display: flex;
+    flex-direction: row;
+    
+} */
+
 .div-add{
     display: flex;
     margin: 0;
@@ -176,6 +195,7 @@ input[type="number"]::-webkit-outer-spin-button {
     position: relative;
 
 }
+
 
 #icone_add_produto{
     background-color: var(--verde);
@@ -243,6 +263,39 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .btn-delete{
     width: 2vw;
+}
+
+/* ----------------------------------- */
+#loading-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* -------------------------------------------------- */
@@ -452,6 +505,103 @@ input[type="number"]::-webkit-outer-spin-button {
     font-size: 1.5vw;
     cursor: pointer;
 }
+/* -----------------------------------------------------------------------*/
+/* VERSAO TABLET */
+
+/* @media (max-width: 900px) {
+
+    body{
+        height: 100vh;
+        justify-content: space-between;
+        padding: 5vw 0 20vw 0;
+    }
+
+    #icone_focal{
+        width: 15vw;
+    }
+
+    #fimec{
+        width: 20vw;
+    }
+
+    .inputs label{
+        font-size: 2vw;
+    }
+
+    .div-add{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 1vw;
+        width: 100vw;
+        margin-top: -10vw;
+    }
+
+    #icone_add_produto{
+        background-color: var(--verde);
+        font-size: 2vw;
+        padding: 1vw 3vw;
+        color: var(--bg);
+        width: 30vw;
+        border: none;
+        border-radius: 1vw;
+        cursor: pointer;
+    }
+
+    .pedido{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+        width: 100vw;
+        margin-bottom: -15vw;
+        margin-top: -20vw;
+    }
+
+    .container-pedido{
+        margin-top: -25vw;
+        margin-bottom: -25vw;
+    }
+    
+
+    .dados_pedido{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        flex-direction: column;
+        gap: 5vw;
+    }
+
+    .modal{
+        position: fixed;
+        background-color: var(--bg);
+        flex-direction: column;
+        padding-top: 5vw;
+        width: 100vw;
+        height: 100vh; 
+    }
+
+    .btn-fechar{
+        margin-bottom: 3vw;
+    }
+
+    #add-btn{
+        padding: 1vw 3vw;
+        height: 4vw;
+        border-radius: 0.3vw;
+        cursor: pointer;
+    }
+
+    #suggestions{
+        max-height: 90vh;
+    }
+
+    .suggestions div{
+        line-height: 4vw;
+    }
+    
+
+} */
 
 /* -----------------------------------------------------------------------*/
 /* VERSAO MOBILE */
@@ -459,7 +609,7 @@ input[type="number"]::-webkit-outer-spin-button {
 @media (max-width: 768px) {
 
     body{
-        height: 100%;
+        height: 100vh;
         padding-top: 5vw;
         overflow-x: scroll;
     }
@@ -717,7 +867,7 @@ input[type="number"]::-webkit-outer-spin-button {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 0;
+        padding: 0 0 10vw;
         gap: 2vw;
         margin: 5vw auto;
     }
