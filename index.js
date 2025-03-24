@@ -20,7 +20,6 @@ window.addEventListener("DOMContentLoaded", async function () {
     let input_rep = document.getElementById("rep");
 
     const wait_modal = document.getElementById('loading-modal');
-
     const data = new Date().toISOString().split("T")[0];
 
     // ------------------------------------------------------
@@ -38,7 +37,6 @@ window.addEventListener("DOMContentLoaded", async function () {
     let modal = document.querySelector(".modal");
     let reiniciar_btn = document.getElementById("reiniciar-btn");
     const btn_pdf = document.getElementById("salvar_pdf");
-
 
     // ------------------------------------------------------
     // RESTRINGIR TECLAS DO CNPJ
@@ -124,44 +122,6 @@ window.addEventListener("DOMContentLoaded", async function () {
         });
     }
     
-    // ------------------------------------------------------
-    // FILTRAR E SUGERIR PRODUTOS
-
-    // function updateSuggestions(filter = "") {
-
-    //     suggestions.innerHTML = "";
-
-    //     let filterParts = filter.toLowerCase().split("%").filter(part => part.trim() !== "");
-
-    //     let filtered = products.filter(item => filterParts.every(part => item.ARTIGO.toLowerCase().includes(part)));
-
-    //     if (filtered.length > 0 && filter !== "") {
-
-    //         suggestions.style.display = "flex";
-
-    //         filtered.forEach(item => {
-
-    //             let div = document.createElement("div");
-    //             div.textContent = item.ARTIGO;
-    //             div.onclick = function () {
-    //                 searchBox.value = item.ARTIGO;
-    //                 suggestions.style.display = "none";
-    //             };
-    //             suggestions.appendChild(div);
-    //         });
-
-    //     } else {
-    //         suggestions.style.display = "none";
-    //     }
-    // }
-
-    // searchBox.addEventListener("input", (e) => updateSuggestions(e.target.value));
-
-    // document.addEventListener("click", (e) => {
-    //     if (!searchBox.contains(e.target) && !suggestions.contains(e.target)) {
-    //         suggestions.style.display = "none";
-    //     }
-    // });
 
     function updateSuggestions(filter = "") {
         suggestions.innerHTML = "";
