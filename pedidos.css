@@ -74,7 +74,8 @@ header h2{
 
 .dados_pedido .linha-1,
 .dados_pedido .linha-2,
-.dados_pedido .linha-3{
+.dados_pedido .linha-3,
+.dados_pedido .linha-4{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -82,6 +83,7 @@ header h2{
     padding-bottom: 5px;
     margin-bottom: 10px;
 }
+
 
 input{
     text-transform: capitalize;
@@ -139,8 +141,14 @@ label{
     font-size: 1.5vw;
 }
 
-#select{
+#select {
     width: 5vw;
+    font-size: 1.5vw;
+    color: var(--azul);
+}
+
+#mtd_pagamento{
+    width: 15vw;
     font-size: 1.5vw;
     color: var(--azul);
 }
@@ -669,6 +677,7 @@ input[type="number"]::-webkit-outer-spin-button {
         display: flex;
         flex-direction: row;
     }
+
 
     #divisor{
         display: block;

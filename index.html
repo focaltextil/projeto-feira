@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+
+<html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
@@ -11,6 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <title>PEDIDO FEIRA</title>
+
 </head>
 
 <body>
@@ -39,7 +42,9 @@
     </header>
 
     <div id="loading-modal">
+
         <div class="spinner"></div>
+
     </div>
 
     <section class="pedido">
@@ -47,7 +52,6 @@
         <div class="dados_pedido">
 
             <div class="linha-1">
-
 
                 <div class="inputs" id="input1">
 
@@ -60,10 +64,10 @@
                 <div class="inputs" id="input2">
 
                     <label>CNPJ:</label>
+
                     <input type="text" id="cnpj" class="entrada">
 
                 </div>
-
 
             </div>
 
@@ -148,6 +152,11 @@
 
                 </div>
 
+
+            </div>
+
+            <div class="linha-4">
+
                 <div class="inputs" id="input9">
 
                     <label><span>*</span>Atendente:</label>
@@ -155,9 +164,24 @@
 
                 </div>
 
+                <div class="inputs" id="input10" style="flex-grow: 0.2;">
+
+                    <label><span>*</span>Metódo Pagamento:</label>
+
+                    <select id="mtd_pagamento">
+                        
+                        <option value="sem_cobranca">Sem Cobrança</option>
+                        <option value="cartao_debito">Cartão de Débito</option>
+                        <option value="cartao_credito">Cartão de Crédito</option>
+                        <option value="pix">Pix</option>
+                        <option value="cheque">Cheque</option>
+                        <option value="boleto">boleto</option>
+    
+                    </select>
+
+                </div>
 
             </div>
-
 
         </div>
 
@@ -165,25 +189,7 @@
 
     <div class="div-add">
 
-        <!-- <div class="mtd_pagamento">
-
-            <label>Método de Pagamento</label>
-
-            <select id="mtd_pagamento">
-
-                <option value="sem_cobranca">Sem Cobrança</option>
-                <option value="cartao_debito">Cartão de Débito</option>
-                <option value="cartao_credito">Cartão de Crédito</option>
-                <option value="pix">Pix</option>
-                <option value="cheque">Cheque</option>
-                <option value="boleto">boleto</option>
-
-            </select>
-
-        </div> -->
-
-            <button id="icone_add_produto">Adicionar Item</button>
-
+        <button id="icone_add_produto">Adicionar Item</button>
 
     </div>
 

@@ -18,6 +18,8 @@ window.addEventListener("DOMContentLoaded", async function () {
     let input_contato = document.getElementById("contato");
     let input_fone_number = document.getElementById("telefone");
     let input_rep = document.getElementById("rep");
+    let mtd_payment = document.getElementById("mtd_pagamento");
+
 
     const wait_modal = document.getElementById('loading-modal');
     const data = new Date().toISOString().split("T")[0];
@@ -135,11 +137,9 @@ window.addEventListener("DOMContentLoaded", async function () {
     
         let filtered = products.filter(item => {
             let article = item.ARTIGO.toLowerCase();
-    
-            // O primeiro termo precisa estar no início do nome do artigo
+
             if (!article.startsWith(filterParts[0])) return false;
     
-            // Os demais termos podem estar em qualquer posição do nome
             return filterParts.slice(1).every(part => article.includes(part));
         });
     
@@ -235,7 +235,9 @@ window.addEventListener("DOMContentLoaded", async function () {
             produto: productName,
             qtd: quantity,
             obs_item: observation,
+            metodo_pagamento: mtd_payment.value,
         };
+
         
         itens.push(newItem);
     
