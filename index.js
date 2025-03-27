@@ -161,10 +161,10 @@ window.addEventListener("DOMContentLoaded", async function () {
         }
     }
     
-    // Evento de input no campo de busca
+
     searchBox.addEventListener("input", (e) => updateSuggestions(e.target.value));
     
-    // Fecha sugestões ao clicar fora
+   
     document.addEventListener("click", (e) => {
         if (!searchBox.contains(e.target) && !suggestions.contains(e.target)) {
             suggestions.style.display = "none";
